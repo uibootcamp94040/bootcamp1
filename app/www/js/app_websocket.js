@@ -1,20 +1,31 @@
-document.addEventListener("DOMContentLoaded", function(){
 
-  document.getElementById("mybtn").addEventListener("click", function() {
-    var ws = new WebSocket("ws://localhost:8081");
+function WebClient(url) {
+
+  var ws;
+  var p = new Promise(function(resolve, reject) {
+    ws = new WebSocket(url);
     ws.addEventListener("open", function() {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        ws.send(JSON.stringify({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        }));
-      });
+      resolve();
     });
 
-
     ws.addEventListener("error", function(err) {
-    	console.log("err received: " + JSON.stringify(err));
+      reject();
     });
   });
 
-});
+  this.error = function(message) {
+    p.then(function() {
+      ws.send(JSON.stringify({
+        messageType: "error",
+        errorMessage:message
+      }));
+    });
+  };
+  // ws.addEventListener("message", function(msg) {
+  // 	console.log("message received: " + msg.data);
+  // 	console.dir(JSON.parse(msg.data));
+  // });
+}
+
+var w = new WebClient("ws://localhost:8081");
+w.error("test");

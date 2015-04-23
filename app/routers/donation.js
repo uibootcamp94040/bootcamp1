@@ -18,21 +18,26 @@ module.exports = function(config, mongoose) {
 
 	var DonationModel = mongoose.model("donation", donationSchema);
 
+  // DonationModel.find({}, function(err, accounts) {
+  //   console.log(err);
+  //   console.dir(accounts.toString());
+  // });
+
 	donationRouter.route("/donations")
 		.get(function(req, res) {
-			DonationModel.find({}, function(err, donation) {
+			DonationModel.find({}, function(err, donations) {
 				if (err) {
 					console.log(err);
 					res.status(500).json(err);
 					return;
 				}
-				res.json(donation);
+				res.json(donations);
 			});
 		});
 
 	donationRouter.route("/donation")
 		.post(function(req, res) {
-			var t = new DonationModel(req.body.donation);
+			var t = new DonationModel(req.body);
       console.dir(req.body);
 			t.save(function(err, donation) {
 				if (err) {
