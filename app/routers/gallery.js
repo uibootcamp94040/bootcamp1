@@ -6,7 +6,6 @@ module.exports = function(config, mongoose) {
     multer = require("multer"),
     fs = require('fs'),
     app = express(),
-    logger = config.logger,
     galleryRouter = express.Router();
 
   app.use(express.static(config.httpServer.wwwRoot));

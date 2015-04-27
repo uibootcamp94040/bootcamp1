@@ -1,7 +1,7 @@
-module.exports = function(webServer, logger) {
+module.exports = function(webServer) {
   "use strict";
   console.log("calling websocket function");
-  
+
   var
     WebSocketServer = require('ws').Server,
     wss = new WebSocketServer({ server: webServer });

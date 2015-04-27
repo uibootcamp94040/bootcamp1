@@ -5,7 +5,6 @@ module.exports = function(config, mongoose) {
 		express = require("express"),
     passport = require("passport"),
     crypto = require("crypto"),
-    logger = config.logger,
 		AccountRouter = express.Router();
 
 	var AccountSchema = mongoose.Schema({

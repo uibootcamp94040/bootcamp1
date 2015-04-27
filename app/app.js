@@ -74,6 +74,8 @@ module.exports = function(config) {
 
 	});
 
+	app.use("/api", require("./routers/account.js")(config, mongoose));
+
 	app.use("/api", function(req, res, next) {
 
 		if (!req.user) {
@@ -84,13 +86,13 @@ module.exports = function(config) {
 			return;
 		}
 
-		if (!csrf.verify(req.session.csrfSecret, req.get("X-CSRF-Token"))) {
-			console.log("not a valid token");
-			res.status(401).json({
-				msg: 'not logged in'
-			});
-			return;
-		}
+		// if (!csrf.verify(req.session.csrfSecret, req.get("X-CSRF-Token"))) {
+		// 	console.log("not a valid token");
+		// 	res.status(401).json({
+		// 		msg: 'not logged in'
+		// 	});
+		// 	return;
+		// }
 
 		csrf.secret().then(function(secret) {
 			req.session.csrfSecret = secret;
@@ -111,7 +113,6 @@ module.exports = function(config) {
 	app.use("/api", require("./routers/donation.js")(config, mongoose));
 	app.use("/api", require("./routers/gallery.js")(config, mongoose));
 	app.use("/api", require("./routers/content.js")(config, mongoose));
-	app.use("/api", require("./routers/account.js")(config, mongoose));
 
 	//app.use("/api", require("./routers/transactions.js")(config, mongoose));
 

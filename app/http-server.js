@@ -6,7 +6,7 @@ module.exports = function(config) {
 	config.httpServer.callback =
 		config.httpServer.callback.bind(config.httpServer);
 
-	config.webSockets(http.createServer(config.app), config.logger)
+	config.webSockets(http.createServer(config.app), logger)
 		.listen(config.httpServer.port, config.httpServer.callback);
 
 };
