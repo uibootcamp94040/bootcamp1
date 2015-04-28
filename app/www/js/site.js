@@ -16205,7 +16205,12 @@ var BaseCollection = Backbone.Collection.extend({
 
 var Donation = BaseModel.extend({
   urlRoot: "/api/donation",
-  defaults: {}
+  defaults: {},
+  initialize: function() {
+    this.on("change:paymentMethod", function(model, value, options) {
+      console.log(value);
+    });
+  }
 });
 
 var Donations = BaseCollection.extend({
@@ -16251,6 +16256,25 @@ var DonationView = Backbone.View.extend({
         });
       }
     });
+  },
+  bindings: {
+    "#paymentMethod": {
+      observe: "paymentMethod",
+      initialize: function($el, model, binding) {
+        console.log("donation payment method bound");
+      },
+      destroy: function($el, model, binding) {
+        console.log("donation payment method unbound");
+      },
+      onGet: function(value) {
+        console.log("onGet: " + value);
+        return value;
+      },
+      onSet: function(value) {
+        console.log("onSet: " + value);
+        return value;
+      }
+    }
   }
 });
 

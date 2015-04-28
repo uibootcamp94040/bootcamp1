@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html dir="ltr">
+	<head>
+		<title>Intuit Boot Camp Demonstrations</title>
+		<link href='libs/bootstrap/dist/css/bootstrap.min.css' rel="stylesheet">
+		<link href='libs/bootstrap/dist/css/bootstrap-theme.min.css' rel="stylesheet">
+		<link href='css/site.css' rel="stylesheet">
+		<!-- <link href='css/site.min.gz.css' rel="stylesheet"> -->
+
+	</head>
+
+	<body>
+		<header>
+			<div><h1>My Non Profit</h1></div>
+			<div id="login-form">
+			</div>
+		</header>
+
+		<button id="log-me-in">Log Me In</button>
+		<br><br>
+		<button id="get-all-donations">Get All Donations</button>
+		<br><br>
+		<button id="create-donation">Create Donation</button>
+		<br><br>
+		<button id="add-donation">Add Donation</button>
+		<br><br>
+		<div id="view-main"></div>
+
+		<script src="libs/jquery/dist/jquery.js"></script>
+		<script src="libs/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="libs/underscore/underscore.js"></script>
+		<script src="libs/backbone/backbone.js"></script>
+		<script src="libs/backbone.stickit/backbone.stickit.js"></script>
+		<script src="libs/handlebars/handlebars.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/app.common.js"></script>
+    <script src="js/models/donation.model.js"></script>
+    <script src="js/collections/donations.collection.js"></script>
+    <script src="js/views/donation.view.js"></script>
+    <script src="js/views/donations.view.js"></script>
+    <script src="js/routers/app.router.js"></script>
+    <script src="js/app.js"></script>
+
+		<!--<script src="js/site.min.gz.js"></script>-->
+	</body>
+
+</html>

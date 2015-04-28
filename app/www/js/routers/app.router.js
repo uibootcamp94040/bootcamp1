@@ -66,9 +66,11 @@ var AppRouter = Backbone.Router.extend({
 			this.currentView.undelegateEvents();
 		}
 		var that = this;
+		var myModel = new Donation();
 		that.currentView = new DonationView({
 			el: this.options.el,
-			router: this
+			router: this,
+			model: myModel
 		});
 		// if(window.view) {
 		// 	window.view.remove();

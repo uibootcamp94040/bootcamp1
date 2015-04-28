@@ -10,6 +10,18 @@ var DonationView = Backbone.View.extend({
 		//this.$el.html(templates["donations"]())
     console.dir(this.template);
 		this.$el.html(this.template);
+		this.addBinding(null, "#paymentMethod", {
+				observe: "paymentMethod"
+				// selectOptions: {
+				// 	collection: [
+				// 		{ name: "California", code: "CA" },
+				// 		{ name: "Utah", code: "UT" },
+				// 		{ name: "Virginia", code: "VA" }
+				// 	],
+				// 	labelPath: "name",
+				// 	valuePath: "code"
+				// }
+		});
 	},
 
 	initialize: function(options) {
@@ -36,6 +48,26 @@ var DonationView = Backbone.View.extend({
 				that.options.router.navigate("/donations", {trigger:true});
 			}
 		});
+	},
+
+	bindings: {
+		"#paymentMethod": {
+			observe: "paymentMethod",
+			initialize: function($el, model, binding) {
+				console.log("donation payment method bound");
+			},
+			destroy: function($el, model, binding) {
+				console.log("donation payment method unbound");
+			},
+			onGet: function(value) {
+				console.log("onGet: " + value);
+				return value;
+			},
+			onSet: function(value) {
+				console.log("onSet: " + value);
+				return value;
+			}
+		}
 	}
 
 });
