@@ -31,7 +31,7 @@ module.exports = function(config, mongoose) {
 
 	ContentRouter.route("/Content")
 		.post(function(req, res) {
-			var t = new ContentModel(req.body.Content);
+			var t = new ContentModel(req.body);
       console.dir(req.body);
 			t.save(function(err, Content) {
 				if (err) {

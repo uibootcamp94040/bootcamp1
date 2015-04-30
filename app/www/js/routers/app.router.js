@@ -5,6 +5,7 @@ var AppRouter = Backbone.Router.extend({
 		"donations": "showDonations",
 		"donations/:DonationsId": "showDonation",
 		"donation": "addDonation"
+		"content": "addContent"
 	},
 
 	showHome: function() {
@@ -32,8 +33,10 @@ var AppRouter = Backbone.Router.extend({
 			this.currentView.undelegateEvents();
 		}
 		var that = this;
+		console.log("donations fectching next!");
 		donations.fetch({
 			success: function() {
+				console.log("donations fetched!");
 				console.log(donations.models);
 				that.currentView = new DonationsView({
 					el: that.options.el,
@@ -68,6 +71,24 @@ var AppRouter = Backbone.Router.extend({
 		var that = this;
 		var myModel = new Donation();
 		that.currentView = new DonationView({
+			el: this.options.el,
+			router: this,
+			model: myModel
+		});
+		// if(window.view) {
+		// 	window.view.remove();
+		// }
+		// window.view = that.currentView;
+		that.currentView.render();
+	},
+
+	addContent: function() {
+		if (this.currentView) {
+			this.currentView.undelegateEvents();
+		}
+		var that = this;
+		var myModel = new Content();
+		that.currentView = new ContentView({
 			el: this.options.el,
 			router: this,
 			model: myModel

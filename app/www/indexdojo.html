@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+	<head>
+		<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Intuit Boot Camp Demonstrations</title>
+		<link href='libs/bootstrap/dist/css/bootstrap.min.css' rel="stylesheet">
+		<link href='libs/bootstrap/dist/css/bootstrap-theme.min.css' rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<div id="app">
+			<div>some content</div>
+			<div>some content</div>
+		</div>
+		<script src="js/dojo/dojo-config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+
+		<script>
+
+    require(["dojo/request","dojo/dom","dojo/dom-construct", "dojo/domReady!"],
+			function(request) {
+        request("http://localhost:8081/api/donations").then(function(response) {
+          console.log("donations:");
+          var data = JSON.parse(response);
+          console.dir(data);
+          // set table element and add rows of data (loop through data)
+          var appDiv = dom.byId("app");
+      		var node = domConstruct.toDom("table");
+      		domConstruct.place(node, appDiv);
+        }, function(err){
+          console.log(err);
+        });
+      });
+
+    // require(["dojo/request","dojo/Deferred","dojo/promise/all", "dojo/promise/first", "dojo/when", "dojo/domReady!"],
+		// 	function(request, Deferred, all, first, when) {
+    //
+		// 		var d = new Deferred();
+    //
+		// 		d.then(function() {
+		// 			console.log("resolved");
+		// 		}, function() {
+		// 			console.log("rejected");
+		// 		});
+    //
+		// 		setTimeout(function() {
+		// 			d.resolve();
+		// 		}, 2000);
+    //
+		// 		all([ d.promise ]).then(function() {
+		// 			console.log("all done");
+		// 		});
+    //
+		// 		first([ d.promise ]).then(function() {
+		// 			console.log("first done");
+		// 		});
+    //
+		// 		when(d.promise, function() {
+		// 			console.log("when done");
+		// 		});
+    //
+    //
+		// 	});
+
+
+		// require(["dojo/dom","dojo/dom-construct","dojo/domReady!"],
+		// 	function(dom, domConstruct) {
+    //
+		// 		var appDiv = dom.byId("app");
+    //
+		// 		var node = domConstruct.toDom("<h1>Hello World!</h1>");
+    //
+    //     var node2 = domConstruct.toDom("<h1>My New world!</h1>");
+		// 		domConstruct.place(node2, appDiv, "after");
+    //
+		// 	});
+
+
+    </script>
+
+
+	</body>
+
+</html>

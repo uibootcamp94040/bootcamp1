@@ -1,5 +1,5 @@
-var Donation = BaseModel.extend({
-	urlRoot: "/api/donation",
+var Content = BaseModel.extend({
+	urlRoot: "/api/content",
 	defaults: {
 	},
 	initialize: function() {

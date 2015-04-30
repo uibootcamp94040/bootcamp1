@@ -78,13 +78,20 @@ module.exports = function(config) {
 
 	app.use("/api", function(req, res, next) {
 
-		if (!req.user) {
-			console.log("not a valid user");
-			res.status(401).json({
-				msg: 'not logged in'
-			});
-			return;
-		}
+		//disabled temporarily to test DOJO request
+		// if (!req.user) {
+		// 	console.log("not a valid user");
+		// 	res.status(401).json({
+		// 		msg: 'not logged in'
+		// 	});
+		// 	return;
+		// }
+		//
+		// csrf.secret().then(function(secret) {
+		// 	req.session.csrfSecret = secret;
+		// 	res.set("X-CSRF-Token", csrf.create(req.session.csrfSecret));
+		// 	next();
+		// });
 
 		// if (!csrf.verify(req.session.csrfSecret, req.get("X-CSRF-Token"))) {
 		// 	console.log("not a valid token");
@@ -93,13 +100,9 @@ module.exports = function(config) {
 		// 	});
 		// 	return;
 		// }
-
-		csrf.secret().then(function(secret) {
-			req.session.csrfSecret = secret;
-			res.set("X-CSRF-Token", csrf.create(req.session.csrfSecret));
-			next();
-		});
-
+		//res.status(200);
+		next();
+		return;
 
 	});
 

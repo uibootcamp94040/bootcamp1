@@ -18,6 +18,10 @@
     "bootstrap": "~3.3.4",
     "q": "1.0.1",
     "backbone": "~1.1.2",
-    "handlebars": "~3.0.2"
+    "handlebars": "~3.0.2",
+    "requirejs": "~2.1.17",
+    "dojo": "~1.10.4",
+    "dijit": "~1.10.4",
+    "marionette": "~2.4.1"
   }
 }
